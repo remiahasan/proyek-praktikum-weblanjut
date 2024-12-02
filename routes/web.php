@@ -5,12 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/', [UserController::class, 'index'])->name('index');
+Route::get('/', [UserController::class, 'Index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('frontend.dashboard.dashboard');
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
@@ -40,12 +41,16 @@ Route::get('/admin/forget_password', [AdminController::class, 'AdminForgetPasswo
 
 Route::post('/admin/password_submit', [AdminController::class, 'AdminPasswordSubmit'])->name('admin.password_submit');
 
+Route::get('/admin/reset-password/{token}/{email}', [AdminController::class, 'AdminResetPassword']);
+Route::post('/admin/reset_password_submit', [AdminController::class, 'AdminResetPasswordSubmit'])->name('admin.reset_password_submit');
+
 Route::middleware('client')->group(function () {
     Route::get('/client/dashboard', [ClientController::class, 'ClientDashboard'])->name('client.dashboard');
     Route::get('/client/profile', [ClientController::class, 'ClientProfile'])->name('client.profile');
     Route::post('/client/profile/store', [ClientController::class, 'ClientProfileStore'])->name('client.profile.store');
-    Route::get('/client/profile/change/password', [ClientController::class, 'ClientChangePassword'])->name('client.change.password');
+    Route::get('/client/change/password', [ClientController::class, 'ClientChangePassword'])->name('client.change.password');
     Route::post('/client/password/update', [ClientController::class, 'ClientPasswordUpdate'])->name('client.password.update');
+
 });
 
 Route::get('/client/login', [ClientController::class, 'ClientLogin'])->name('client.login');
@@ -53,3 +58,12 @@ Route::get('/client/register', [ClientController::class, 'ClientRegister'])->nam
 Route::post('/client/register/submit', [ClientController::class, 'ClientRegisterSubmit'])->name('client.register.submit');
 Route::post('/client/login_submit', [ClientController::class, 'ClientLoginSubmit'])->name('client.login_submit');
 Route::get('/client/logout', [ClientController::class, 'ClientLogout'])->name('client.logout');
+
+Route::middleware('admin')->group(function () {
+
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/all/category', 'AllCategory')->name('all.category');
+    });
+
+
+});
