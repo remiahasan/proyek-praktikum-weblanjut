@@ -9,10 +9,9 @@
                         <h4 class="mb-sm-0 font-size-18">All Category</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <a href="" class="btn btn-primary waves-effect waves-light">Add Category</a>
+                                <a href="{{ route('add.category') }}" class="btn btn-primary waves-effect waves-light">Add Category</a>
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>

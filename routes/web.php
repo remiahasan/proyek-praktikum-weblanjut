@@ -60,10 +60,8 @@ Route::post('/client/login_submit', [ClientController::class, 'ClientLoginSubmit
 Route::get('/client/logout', [ClientController::class, 'ClientLogout'])->name('client.logout');
 
 Route::middleware('admin')->group(function () {
-
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/all/category', 'AllCategory')->name('all.category');
+        Route::get('/add/category', 'AddCategory')->name('add.category');
     });
-
-
 });
