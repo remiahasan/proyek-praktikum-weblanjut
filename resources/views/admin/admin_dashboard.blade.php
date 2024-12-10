@@ -46,9 +46,6 @@
         <!-- ========== Left Sidebar Start ========== -->
         @include('admin.body.sidebar')
         <!-- Left Sidebar End -->
-
-
-
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -56,16 +53,12 @@
 
             @yield('admin')
             <!-- End Page-content -->
-
-
             @include('admin.body.footer')
         </div>
         <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
-
-
     <!-- Right Sidebar -->
     @include('admin.body.rightsidebar')
     <!-- /Right-bar -->
@@ -98,9 +91,10 @@
     </script>
     <!-- dashboard init -->
     <script src="{{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>
-
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
-
+    <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>

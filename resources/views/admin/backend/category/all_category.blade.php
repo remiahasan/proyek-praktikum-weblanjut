@@ -9,7 +9,8 @@
                         <h4 class="mb-sm-0 font-size-18">All Category</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <a href="{{ route('add.category') }}" class="btn btn-primary waves-effect waves-light">Add Category</a>
+                                <a href="{{ route('add.category') }}" class="btn btn-primary waves-effect waves-light">Add
+                                    Category</a>
                             </ol>
                         </div>
                     </div>
@@ -19,7 +20,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-body">
                             <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                 <thead>
@@ -37,8 +37,11 @@
                                             <td>{{ $item->category_name }}</td>
                                             <td><img src="{{ asset($item->image) }}" alt=""
                                                     style="width: 70px; height:40px;"></td>
-                                            <td><a href="" class="btn btn-info waves-effect waves-light">Edit</a>
-                                                <a href="" class="btn btn-danger waves-effect waves-light">Delete</a>
+                                            <td><a href="{{ route('edit.category', $item->id) }}"
+                                                    class="btn btn-info waves-effect waves-light">Edit</a>
+                                                <a href="{{ route('delete.category', $item->id) }}"
+                                                    class="btn btn-danger waves-effect waves-light"
+                                                    id="delete">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
