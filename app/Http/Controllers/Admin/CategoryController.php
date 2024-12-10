@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use App\Models\City;
 
 class CategoryController extends Controller
 {
-    public function AllCategory()
-    {
+    public function AllCategory(){
         $category = Category::latest()->get();
         return view('admin.backend.category.all_category', compact('category'));
     }
+
     public function AddCategory(){
         return view('admin.backend.category.add_category');
     }
@@ -54,7 +55,6 @@ class CategoryController extends Controller
             $img = $manager->read($image);
             $img->resize(300,300)->save(public_path('upload/category/'.$name_gen));
             $save_url = 'upload/category/'.$name_gen;
-
             Category::find($cat_id)->update([
                 'category_name' => $request->category_name,
                 'image' => $save_url,
@@ -63,7 +63,6 @@ class CategoryController extends Controller
                 'message' => 'Category Updated Successfully',
                 'alert-type' => 'success'
             );
-
             return redirect()->route('all.category')->with($notification);
         } else {
             Category::find($cat_id)->update([
@@ -87,5 +86,10 @@ class CategoryController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function AllCity(){
+        $city = City::latest()->get();
+        return view('admin.backend.city.all_city', compact('city'));
     }
 }
